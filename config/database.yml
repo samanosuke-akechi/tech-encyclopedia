@@ -16,11 +16,11 @@ default: &default
   username: root
   password:
   socket: /tmp/mysql.sock
-  host: db
 
 development:
   <<: *default
   database: tech_encyclopedia_development
+  host: db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,6 +28,7 @@ development:
 test:
   <<: *default
   database: tech_encyclopedia_test
+  host: db
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -52,5 +53,6 @@ test:
 production:
   <<: *default
   database: tech_encyclopedia_production
-  username: tech_encyclopedia
-  password: <%= ENV["TECH_ENCYCLOPEDIA_DATABASE_PASSWORD"] %>
+  username: root
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  socket: /var/lib/mysql/mysql.sock
